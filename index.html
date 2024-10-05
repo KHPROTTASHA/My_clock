@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Watch | Learn Code With Amit</title>
+    <!-- Custom CSS -->
+     <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="clock1">
+            <div id="Date"></div>
+
+            <ul>
+            <li id="hours">05</li>
+                <li id="point">:</li>
+                <li id="min">20</li>
+                <li id="point">:</li>
+                <li id="sec">30</li>
+                <!-- <li id="AM">PM</li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+    <div class="clock">
+        <div class="numbers">
+            <span style="--i:0;"><b>12</b></span>
+            <span style="--i:1;"><b>3</b></span>
+            <span style="--i:2;"><b>6</b></span>
+            <span style="--i:3;"><b>9</b></span>
+
+            <div class="circle" id="hr"><i></i></div>
+            <div class="circle" id="mn"><i></i></div>
+            <div class="circle" id="sc"><i></i></div>
+        </div>
+    </div>
+</div>
+   <script>
+    let hr = document.querySelector('#hr');
+    let mn = document.querySelector('#mn');
+    let sc = document.querySelector('#sc');
+
+   setInterval(() => {
+    
+    let day = new Date();
+     let hh = day.getHours() * 30;
+     let mm = day.getMinutes() * 6;
+     let ss = day.getSeconds() * 6;
+
+     hr.style.transform = `rotateZ(${hh + (mm/12)}deg)`;
+     mn.style.transform = `rotateZ(${mm}deg)`;
+     sc.style.transform = `rotateZ(${ss}deg)`;
+   }, );
+
+
+   function clock(){
+                
+                var monthNames = [ "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December" ]; 
+                var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+                var today = new Date();
+
+                document.getElementById('Date').innerHTML = (dayNames[today.getDay()] + " " + 
+                today.getDate() + ' ' + monthNames[today.getMonth()] + ' ' +today.getFullYear());
+
+                
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                var day = h<11 ? 'AM': 'PM';
+
+                h = h<10? '0'+h: h;
+                m = m<10? '0'+m: m;
+                s = s<10? '0'+s: s;               
+
+                document.getElementById('hours').innerHTML = h;
+                document.getElementById('min').innerHTML = m;
+                document.getElementById('sec').innerHTML = s;
+
+            }var inter = setInterval(clock,400);
+   </script>
+
+</body>
+</html>
